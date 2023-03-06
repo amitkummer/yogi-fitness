@@ -1,0 +1,16 @@
+<div class="container">
+    <app-line-chart 
+        [duration]="durationAveragePastYear"
+        [intensity]="intensityAveragePastYear"
+        [caloriesBurned]="caloriesBurnedAveragePastYear">
+    </app-line-chart>
+    <app-line-chart-all-time 
+        [duration]="durationAverageAllTime"
+        [intensity]="intensityAverageAllTime"
+        [caloriesBurned]="caloriesBurnedAverageAllTime">
+    </app-line-chart-all-time>
+    <app-polar-chart 
+        [labels]="years"
+        [chartData]="caloriesBurnedPerYear">
+    </app-polar-chart>
+</div>

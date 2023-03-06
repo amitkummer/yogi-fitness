@@ -1,0 +1,11 @@
+.dialog {
+  &-actions {
+    display: flex;
+    justify-content: center;
+  }
+  &-spinner {
+    margin-left: 2rem;
+  }
+
+  padding: 2rem;
+}

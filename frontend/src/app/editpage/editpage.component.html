@@ -1,0 +1,86 @@
+<mat-card class="card" color="basic">
+  <mat-form-field class="card-item">
+    <mat-label>Title</mat-label>
+    <input matInput type="text" [formControl]="title" />
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="title.setValue('')"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="title.invalid">{{ getErrorMessage(title) }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="card-url">
+    <mat-label>Image URL</mat-label>
+    <input matInput type="text" [(ngModel)]="workout.imageSource" />
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="workout.imageSource = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <img src="{{ workout.imageSource }}" class="card-image" mat-card-image />
+  <mat-form-field class="card-item">
+    <mat-label>Description</mat-label>
+    <textarea matInput type="text" [formControl]="description"></textarea>
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="description.setValue('')"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="description.invalid">{{
+      getErrorMessage(description)
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="card-date">
+    <mat-label>Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="workout.startDateTime"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="card-item">
+    <mat-label>Duration (Minutes)</mat-label>
+    <input matInput type="text" [formControl]="duration" />
+    <mat-error *ngIf="duration.invalid">{{
+      getErrorMessage(duration)
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="card-item">
+    <mat-label>Intensity</mat-label>
+    <mat-select [(value)]="workout.intensity">
+      <mat-option *ngFor="let intensity of intensityValues" [value]="intensity">
+        {{ intensity }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="card-item">
+    <mat-label>Calories Burned</mat-label>
+    <input matInput type="text" [formControl]="caloriesBurned" />
+    <mat-error *ngIf="caloriesBurned.invalid">{{
+      getErrorMessage(caloriesBurned)
+    }}</mat-error>
+  </mat-form-field>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="sendForm()">
+      <span *ngIf="!update; else elseBlock">UPDATE</span>
+      <ng-template #elseBlock>
+        <div class="dialog-spinner">
+          <mat-spinner diameter="25" color="warn"></mat-spinner>
+        </div>
+      </ng-template>
+    </button>
+  </mat-card-actions>
+</mat-card>

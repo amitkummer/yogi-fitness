@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="container-link">
+    <a
+      mat-fab
+      class="link-create"
+      aria-label="Add workout page"
+      color="accent"
+      routerLink="/create"
+    >
+      <mat-icon>add</mat-icon>
+    </a>
+  </div>
+  <mat-card *ngFor="let workout of workouts" class="card" color="basic">
+    <mat-card-header>
+      <mat-card-title>{{ workout.title }}</mat-card-title>
+      <mat-card-subtitle class="card-subtitle">
+        <div class="card-subtitle-time card-subtitle-item">
+          {{ duration(workout.startDateTime, workout.endDateTime) }} minutes,
+          {{ workout.startDateTime.toDateString() }}.
+        </div>
+        <div class="card-subtitle-item">
+          Intensity: {{ workout.intensity }}/6.
+        </div>
+        <div class="card-subtitle-item">
+          Calories burned: {{ workout.caloriesBurned }}.
+        </div>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img src="{{ workout.imageSource }}" mat-card-image class="card-image" />
+    <mat-card-content class="card-description">
+      <p>
+        {{ workout.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a
+        mat-stroked-button
+        class="card-button-edit"
+        routerLink="/edit/{{ workout.id }}"
+        aria-label="Edit item"
+        >EDIT</a
+      >
+      <button
+        mat-raised-button
+        color="warn"
+        class="card-button-delete"
+        (click)="openDeleteDialog(workout.title, workout.id)"
+      >
+        DELETE
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

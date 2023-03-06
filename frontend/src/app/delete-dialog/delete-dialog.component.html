@@ -1,0 +1,20 @@
+<div class="dialog">
+  <h1 mat-dialog-title>Delete {{ data.name }} workout?</h1>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-stroked-button (click)="onCancel()">CANCEL</button>
+    <button
+      *ngIf="!delete; else elseBlock"
+      mat-raised-button
+      (click)="onDelete()"
+      cdkFocusInitial
+      color="warn"
+    >
+      DELETE
+    </button>
+    <ng-template #elseBlock>
+      <div class="dialog-spinner">
+        <mat-spinner diameter="25" color="warn"></mat-spinner>
+      </div>
+    </ng-template>
+  </div>
+</div>
